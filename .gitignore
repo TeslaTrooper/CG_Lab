@@ -1,0 +1,12 @@
+.vs
+Debug
+x64
+CG_Labor.sdf
+CG_Labor.sln
+CG_Labor/Debug
+CG_Labor/CG_Labor.vcxproj
+CG_Labor/CG_Labor.vcxproj.filters
+CG_Labor/CG_Labor.vcxproj.user
+CG_Labor/x64
+CG_Labor.opensdf
+res/*
