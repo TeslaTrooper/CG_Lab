@@ -3,11 +3,7 @@
 Cylinder::Cylinder(float r, float h) {
 	size = glm::vec2(r, h);
 
-	float red = rand() % 255 + 200;
-	float green = 140;
-	float blue = rand() % 70 + 20;
-
-	color = new glm::vec3(red / 255, green / 255, blue / 255);
+	color = getRandomColor();
 
 	float x = rand() % 1000;
 	float z = rand() % 1000;
@@ -26,8 +22,6 @@ Cylinder::Cylinder(float r, float h) {
 	else {
 		z -= 5;
 	}
-
-	cout << red << " " << green << " " << blue << endl;
 
 	position = glm::vec3(x, 0.1, z);
 
@@ -100,6 +94,42 @@ glm::vec3 Cylinder::getPosition() const {
 
 glm::vec2 Cylinder::getSize() const {
 	return size;
+}
+
+glm::vec3* Cylinder::getRandomColor() {
+	float h = 25;
+	float s = 255;
+	float v = rand() % (170 - 70 + 1) + 70;
+	float r, g, b;
+
+	s /= 255;
+	v /= 255;
+
+	int i;
+	float f, p, q, t;
+	if (s == 0) {
+		return new glm::vec3(v, v, v);
+	}
+
+	h /= 60;
+	i = floor(h);
+	f = h - i;
+	p = v * (1 - s);
+	q = v * (1 - s * f);
+	t = v * (1 - s * (1 - f));
+
+	switch (i) {
+		case 0: r = v; g = t; b = p; break;
+		case 1: r = q; g = v; b = p; break;
+		case 2: r = p; g = v; b = t; break;
+		case 3: r = p; g = q; b = v; break;
+		case 4: r = t; g = p; b = v; break;
+		default: r = v; g = p; b = q; break;
+	}
+
+
+
+	return new glm::vec3(r, g, b);
 }
 
 void Cylinder::draw(Shader* shader) const {

@@ -26,6 +26,7 @@ class Cylinder {
 	vector<GLuint> indices;
 
 	float toRadians(float degrees);
+	glm::vec3* getRandomColor();
 
 public:
 	Cylinder(float r, float h);
